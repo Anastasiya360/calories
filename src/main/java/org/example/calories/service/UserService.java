@@ -5,7 +5,6 @@ import org.example.calories.entity.User;
 import org.springframework.stereotype.Service;
 
 
-
 @Service
 public interface UserService {
 
@@ -15,5 +14,10 @@ public interface UserService {
      * @return созданный пользователь
      */
     User create(User user);
+
+    /**
+     * Проверка существует ли пользователь по id
+     */
+    void existsUser(Integer id);
 
 }
