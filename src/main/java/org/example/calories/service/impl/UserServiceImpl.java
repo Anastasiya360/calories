@@ -26,6 +26,16 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    @Override
+    public void existsUser(Integer id) {
+        if (id == null) {
+            throw new ApiException("id не передан", HttpServletResponse.SC_BAD_REQUEST);
+        }
+        if (!userRepository.existsById(id)) {
+            throw new ApiException("Пользователь не найден", HttpServletResponse.SC_NOT_FOUND);
+        }
+    }
+
     private void checkUser(User user) {
         if (user.getName() == null || user.getName().isBlank()) {
             throw new ApiException("Имя не передано", HttpServletResponse.SC_BAD_REQUEST);
@@ -46,6 +56,7 @@ public class UserServiceImpl implements UserService {
             throw new ApiException("Цель задана неверно (варианты: WEIGHT_LOSS, MAINTENANCE, GAIN)", HttpServletResponse.SC_BAD_REQUEST);
         }
     }
+
     private int calculateCalorieNorm(User user) {
         return (int) (655.1 + (9.563 * user.getWeight()) + (1.85 * user.getHeight()) - (4.676 * user.getAge()));
     }
