@@ -25,14 +25,6 @@ public interface MealRepository extends JpaRepository<Meal, Integer> {
     Tuple findMealsCountAndCaloriesByUserIdAndDate(Integer userId, LocalDate dateFrom, LocalDate dateTo);
 
     @Query(nativeQuery = true, value = """
-            select *
-            from meals m
-            where m.user_id = :userId
-              and m.date_time_of_eating > :dateFrom
-              and m.date_time_of_eating < :dateTo""")
-    List<Meal> findAllByUserIdAndDate(Integer userId, LocalDate dateFrom, LocalDate dateTo);
-
-    @Query(nativeQuery = true, value = """
             select distinct m.date_time_of_eating :: date
             from meals m
             where user_id = :userId""")
