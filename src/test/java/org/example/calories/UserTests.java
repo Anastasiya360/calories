@@ -96,7 +96,7 @@ public class UserTests {
 
     @Test
     void testUserCreateWeightNull() {
-        User user = new User(1, "name", "email",(short) 24 , null, (short) 170, "GAIN", 2000);
+        User user = new User(1, "name", "email", (short) 24, null, (short) 170, "GAIN", 2000);
 
         ApiException thrown = Assertions.assertThrows(ApiException.class, () -> {
             userService.create(user);
@@ -129,7 +129,7 @@ public class UserTests {
 
     @Test
     void testUserCreateHeightNull() {
-        User user = new User(1, "name", "email",(short) 24 , (short) 64, null, "GAIN", 2000);
+        User user = new User(1, "name", "email", (short) 24, (short) 64, null, "GAIN", 2000);
 
         ApiException thrown = Assertions.assertThrows(ApiException.class, () -> {
             userService.create(user);
